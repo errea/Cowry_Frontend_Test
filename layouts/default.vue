@@ -1,15 +1,24 @@
 <template>
     <div class="min-h-screen">
-        <div>
-            <div class="h-80 bg-[#dde3eb] text-white">
-                <header>
-                </header>
-            </div>
+        <div class="w-full h-80 flex justify-center bg-[#dde3eb] text-white">
+            <Search />
         </div>
         <slot />
     </div>
 </template>
 
-<script setup lang="ts"></script>
+<script>
+import Search from '~/components/common/Search.vue'
+
+export default {
+    components: {
+        Search
+    },
+    data() {
+        return {
+        }
+    }
+}
+</script>
 
 <style lang="scss" scoped></style>
