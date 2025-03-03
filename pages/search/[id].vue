@@ -1,18 +1,17 @@
 <template>
     <div>
-      <p> Search Result display here {{ id }}</p>
+      <SearchResults v-if="searchData.results.length" :results="searchData.results" :query="searchData.query" />
     </div>
   </template>
   
   <script setup>
-  import { definePageMeta } from 'nuxt/dist/pages/runtime';
-
+  import SearchResults from '~/components/common/SearchResults.vue'
   const { id } = useRoute().params
   
   definePageMeta({
     layout: 'search',
   })
-  
+  const searchData = ref({ results: [], query: '' })
   </script>
   
   <style lang="scss" scoped>

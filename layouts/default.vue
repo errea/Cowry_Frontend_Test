@@ -1,7 +1,7 @@
 <template>
     <div class="min-h-screen">
         <div class="w-full h-80 flex justify-center bg-[#dde3eb] text-white">
-            <Search />
+            <Search  @search-results="(data) => searchData = data" />
         </div>
         <slot />
     </div>
