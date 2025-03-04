@@ -1,8 +1,13 @@
 <template>
-    <div class="relative w-full flex items-center justify-center">
-        <input type="text"
+    <div class="relative lg:w-full w-[8rem] md:w-[50rem] flex flex-col items-center justify-center bottom-[5rem]">
+        <input 
+            v-model="searchQuery"
+            @keyup.enter="handleSearch"
+            type="search"
             class="text-xl text-semi-bold h-[6rem] w-[100rem] pl-16 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 bg-white text-black"
-            placeholder="Search for photo" />
+            placeholder="Search for photo"
+            />
+            
         <div class="absolute inset-y-0 left-[44rem] pl-3 flex items-center pointer-events-none">
             <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg">
@@ -13,10 +18,34 @@
     </div>
 </template>
 
-<script>
-export default {
-    name: 'SearchBar',
-};
+<script setup>
+import { ref, defineEmits } from 'vue'
+import { useRouter } from 'vue-router';
+
+const emit = defineEmits(['search-results'])
+const router = useRouter();
+const searchQuery = ref('')
+// const loading = ref(false)
+
+const handleSearch = () => {
+
+  if (searchQuery.value && searchQuery.value.trim()) {
+//   router.push({ name: 'search', query: { query: searchQuery.value } })
+router.push({
+      path: '/search',
+      query: { q: searchQuery.value.trim() }
+    });
+    searchQuery.value = '';
+}
+
+}
+
+// Debounce implementation
+let timeoutId
+const handleSearchResult = () => {
+  clearTimeout(timeoutId)
+  timeoutId = setTimeout(performSearch, 300)
+}
 </script>
 
 <style>
