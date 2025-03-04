@@ -1,18 +1,20 @@
 <template>
   <div>
-    <SearchResults v-if="searchData.results.length" :results="searchData.results" :query="searchData.query" />
+    <SearchResults :query="query" />
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import SearchResults from '~/components/common/SearchResults.vue'
+import { ref, watch } from 'vue';
+import { useRoute } from 'vue-router';
+import axios from 'axios';
 
-definePageMeta({
-  layout: 'search',
-})
-
+const UNSPLASH_KEY = import.meta.env.VITE_UNSPLASH_ACCESS_KEY;
+const route = useRoute();
+const searchResults = ref([]);
 const searchData = ref({ results: [], query: '' })
+
 </script>
 
 <style lang="scss" scoped>

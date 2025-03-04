@@ -1,18 +1,18 @@
 <template>
     <div class="min-h-screen">
         <div class="w-full h-80 flex justify-center bg-[#dde3eb] text-white">
-            <Search  @search-results="(data) => searchData = data" />
+            <!-- <Search  @search-results="(data) => searchData = data" /> -->
         </div>
         <slot />
     </div>
 </template>
 
 <script>
-import Search from '~/components/common/Search.vue'
+// import Search from '~/components/common/Search.vue'
 
 export default {
     components: {
-        Search
+        // Search
     },
     data() {
         return {
